@@ -11,17 +11,12 @@ Sistem Absensi RFID dan ESP32 Cam
 - Tampilan Halaman Utama (Dashboard)
 <img src="image/halamanweb.PNG">
 
-- Tampilan Halaman Data Karyawan
+- Tampilan Halaman Data Mahasiswa
 <img src="image/datakaryawan.PNG">
 
-- Tampilan Halaman Data Jabatan
+- Tampilan Halaman Data Mahasiswa
 <img src="image/datajabatan.PNG">
 
 - Tampilan Halaman Data Rekap
 <img src="image/datarekap.PNG">
 
-- Tampilan Halaman Data Izin
-<img src="image/dataizin.PNG">
-
-- Tampilan Halaman Data Libur
-<img src="image/datalibur.PNG">
