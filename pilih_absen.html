@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pilih Metode Absensi</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+h1 { font-size: 2em; margin-bottom: 20px; }
+.btn {
+  display: inline-block;
+  padding: 15px 30px;
+  margin: 10px;
+  font-size: 18px;
+  color: white;
+  background: #4CAF50;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+.btn:hover { background: #45a049; transform: scale(1.05); }
+.btn.rfid { background: #007BFF; }
+.btn.rfid:hover { background: #0056b3; }
+</style>
+</head>
+<body>
+
+<h1>📋 Pilih Metode Absensi</h1>
+
+<a href="absen.html?mode=rfid" class="btn rfid">📶 RFID</a>
+<a href="Recognition/index.html" class="btn">📷 Face Recognition</a>
+
+</body>
+</html>

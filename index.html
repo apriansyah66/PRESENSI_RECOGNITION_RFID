@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Absensi RFID & Face Recognition</title>
+
+<script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+}
+video, canvas {
+  border: 2px solid #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.1);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+.card {
+  background: #fff;
+  color: #333;
+  border-radius: 15px;
+  padding: 20px;
+  margin-top: 20px;
+}
+button.face-btn {
+  margin-top: 20px;
+  padding: 12px 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+button.face-btn:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+.video-container {
+  position: relative;
+  display: inline-block;
+}
+#faceCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h2>📇 Autentikasi RFID</h2>
+
+  <div id="rfid-section">
+    <div id="app-content" class="card">
+      <p>🔄 Menunggu kartu RFID ditempel...</p>
+    </div>
+    <button id="lanjut-face-btn" class="face-btn" style="display:none" onclick="runFaceRecognition()">
+      <i class="fas fa-eye"></i> Lanjut ke Face Recognition
+    </button>
+  </div>
+
+  <div id="face-section" style="display:none; margin-top:20px;">
+    <h2>👤 Autentikasi Wajah</h2>
+    <div class="video-container">
+      <video id="video" width="320" height="240" autoplay muted></video>
+      <canvas id="faceCanvas" width="320" height="240"></canvas>
+    </div>
+    <div id="status">📷 Klik Lanjut untuk memulai face recognition...</div>
+  </div>
+</div>
+
+<script>
+class RFID {
+  constructor() {
+    this.apiUrl = 'absennn.php';
+    this.intervalId = null;
+  }
+
+  start() {
+    this.intervalId = setInterval(() => this.checkRFID(), 3000);
+  }
+
+  async checkRFID() {
+    const content = document.getElementById('app-content');
+    try {
+      const res = await fetch(this.apiUrl);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+
+      if (data.tampilkan_card) {
+        clearInterval(this.intervalId);
+
+        content.innerHTML = `
+          <div>
+            <p><strong>Nama:</strong> ${data.nama}</p>
+            <p><strong>NIM:</strong> ${data.nim}</p>
+            <p><strong>Prodi:</strong> ${data.prodi}</p>
+            <p><strong>RFID:</strong> ${data.rfid_uid}</p>
+            <p><strong>Waktu:</strong> ${data.waktu}</p>
+            <p style="color:green;font-weight:bold;">🎉 RFID Terverifikasi!</p>
+          </div>
+        `;
+
+        document.getElementById('lanjut-face-btn').style.display = 'inline-block';
+      } else if (data.rfid_tidak_dikenal) {
+        content.innerHTML = `
+          <div>
+            <p style="color:red;font-weight:bold;">🚫 Kartu tidak dikenal</p>
+            <p><strong>UID:</strong> ${data.rfid_uid}</p>
+            <p>Hubungi admin untuk pendaftaran.</p>
+          </div>
+        `;
+      } else {
+        content.innerHTML = `<p>🔄 Menunggu kartu RFID ditempel...</p>`;
+      }
+    } catch (err) {
+      content.innerHTML = `<p style="color:red;">❌ Error: ${err.message}</p>`;
+    }
+  }
+}
+
+function startRFID() {
+  const rfid = new RFID();
+  rfid.start();
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  startRFID();
+});
+</script>
+
+<script src="script_face.js"></script>
+</body>
+</html>

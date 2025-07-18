@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Daftar Wajah</title>
+<script src="https://cdn.jsdelivr.net/npm/face-api.js"></script>
+<style>
+body {text-align:center;font-family:sans-serif;background:#eef;padding:20px;}
+video {border:1px solid #333;border-radius:8px;margin-top:10px;}
+</style>
+</head>
+<body>
+<h2>📋 Pendaftaran Wajah</h2>
+
+<div>
+  <p>Tempel kartu RFID dulu, lalu klik tombol untuk ambil wajah.</p>
+  <div>UID: <span id="uid">menunggu...</span></div>
+</div>
+
+<video id="video" width="320" height="240" autoplay muted></video><br>
+<button onclick="captureFace()">📷 Ambil & Simpan Wajah</button>
+<p id="status"></p>
+
+<canvas id="canvas" style="display:none;"></canvas>
+
+<script>
+// polling UID dari server
+setInterval(async () => {
+  const res = await fetch('absennn.php'); // atau endpoint lain
+  const data = await res.json();
+  if (data.tampilkan_card) {
+    document.getElementById('uid').textContent = data.rfid_uid;
+  }
+}, 2000);
+
+// mulai kamera
+const video = document.getElementById('video');
+navigator.mediaDevices.getUserMedia({video:true}).then(stream=>{
+  video.srcObject=stream;
+});
+
+async function captureFace(){
+  const uid = document.getElementById('uid').textContent;
+  if(uid === 'menunggu...'){
+    alert('Tempel kartu RFID dulu!');
+    return;
+  }
+
+  const canvas = document.getElementById('canvas');
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  canvas.getContext('2d').drawImage(video, 0, 0);
+
+  canvas.toBlob(blob => {
+    const formData = new FormData();
+    formData.append('uid', uid);
+    formData.append('image', blob, `${uid}.jpg`);
+
+    fetch('save_face.php', {
+      method: 'POST',
+      body: formData
+    }).then(res => res.text())
+      .then(msg => {
+        document.getElementById('status').textContent = msg;
+      }).catch(err => {
+        document.getElementById('status').textContent = '❌ Gagal: '+err;
+      });
+  }, 'image/jpeg', 0.9);
+}
+</script>
+</body>
+</html>

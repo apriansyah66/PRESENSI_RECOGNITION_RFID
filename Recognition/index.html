@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Face Recognition Absensi</title>
+
+  <!-- ✅ CDN face-api.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+  <script defer src="script.js"></script>
+
+  <!-- ✅ CDN FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 30px;
+      background-color: #f5f5f5;
+    }
+
+    video {
+      border: 2px solid #333;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    #status {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: green;
+    }
+
+    canvas {
+      position: absolute;
+      top: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .face-btn {
+      margin-top: 15px;
+      padding: 12px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .face-btn:hover {
+      background-color: #45a049;
+      transform: scale(1.03);
+    }
+
+    .face-btn i {
+      margin-right: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Face Recognition Absensi</h2>
+
+  <!-- Video webcam -->
+  <video id="video" width="720" height="560" autoplay muted playsinline></video>
+
+  <!-- Tombol dengan ikon -->
+  <div>
+    <button class="face-btn" onclick="startVideo()">
+      <i class="fas fa-eye"></i> Mulai Face Recognition
+    </button>
+  </div>
+
+  <!-- Status -->
+  <div id="status">📦 Menunggu kamera...</div>
+
+  <!-- Loader model (dipanggil saat DOM selesai) -->
+  <script>
+      
+
+    async function loadModels() {
+      statusDiv.innerText = '📦 Memuat model...';
+
+      await Promise.all([
+        faceapi.nets.faceRecognitionNet.loadFromUri('/Recognition/models/face_recognition'),
+        faceapi.nets.faceLandmark68Net.loadFromUri('/Recognition/models/face_landmark_68'),
+        faceapi.nets.ssdMobilenetv1.loadFromUri('/Recognition/models/ssd_mobilenetv1')
+      ]);
+
+      statusDiv.innerText = '✅ Model dimuat. Silakan klik tombol untuk mulai kamera.';
+    }
+
+    window.addEventListener('DOMContentLoaded', loadModels);
+  </script>
+</body>
+</html>
