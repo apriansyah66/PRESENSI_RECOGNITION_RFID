@@ -23,7 +23,8 @@ Sistem absensi berbasis web yang menggabungkan teknologi **Pengenalan Wajah (Fac
 
 ## 🖥️ Screenshot
 
-_(Tambahkan beberapa screenshot folder `/screenshots/` jika tersedia)_
+<img width="1866" height="916" alt="image" src="https://github.com/user-attachments/assets/7247db3a-45f2-468e-acd7-8c0ce20805eb" />
+
 
 ## 📁 Struktur Folder (Contoh)
 
