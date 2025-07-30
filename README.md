@@ -25,6 +25,7 @@ Sistem absensi berbasis web yang menggabungkan teknologi **Pengenalan Wajah (Fac
 
 1. User Admin
 
+
 <img width="1866" height="916" alt="image" src="https://github.com/user-attachments/assets/7247db3a-45f2-468e-acd7-8c0ce20805eb" />
 <img width="1856" height="934" alt="image" src="https://github.com/user-attachments/assets/dc636d31-52b3-4397-83de-a689eec0e0ee" />
 <img width="1860" height="915" alt="image" src="https://github.com/user-attachments/assets/bf15863c-0ddd-44ec-8944-50e684b55ca0" />
@@ -37,18 +38,11 @@ Sistem absensi berbasis web yang menggabungkan teknologi **Pengenalan Wajah (Fac
 
 <img width="1862" height="917" alt="image" src="https://github.com/user-attachments/assets/a9d9f58b-de4f-4562-8574-1373b3de967e" />
 
+
 2.1 Hasil Validasi Presensi
+
 <img width="493" height="384" alt="image" src="https://github.com/user-attachments/assets/3cc85e0a-5116-46fe-8b9c-b54d6be2d109" />
 <img width="664" height="337" alt="image" src="https://github.com/user-attachments/assets/77ffc9e5-b308-4111-bfd6-06333a60a946" />
-
-
-
-
-
-
-
-
-
 
 ## 📁 Struktur Folder (Contoh)
 
