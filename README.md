@@ -33,6 +33,17 @@ Sistem absensi berbasis web yang menggabungkan teknologi **Pengenalan Wajah (Fac
 <img width="1855" height="923" alt="image" src="https://github.com/user-attachments/assets/af2751d5-8a9d-44e3-a5d8-8831c6b4b761" />
 <img width="1859" height="919" alt="image" src="https://github.com/user-attachments/assets/59a6e668-7ce2-482c-bb5f-19c46b14923f" />
 
+2. User Mahasiswa
+
+<img width="1862" height="917" alt="image" src="https://github.com/user-attachments/assets/a9d9f58b-de4f-4562-8574-1373b3de967e" />
+
+2.1 Hasil Validasi Presensi
+<img width="493" height="384" alt="image" src="https://github.com/user-attachments/assets/3cc85e0a-5116-46fe-8b9c-b54d6be2d109" />
+<img width="664" height="337" alt="image" src="https://github.com/user-attachments/assets/77ffc9e5-b308-4111-bfd6-06333a60a946" />
+
+
+
+
 
 
 
