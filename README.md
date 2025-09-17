@@ -44,5 +44,6 @@ Sistem absensi berbasis web yang menggabungkan teknologi **Pengenalan Wajah (Fac
 <img width="493" height="384" alt="image" src="https://github.com/user-attachments/assets/3cc85e0a-5116-46fe-8b9c-b54d6be2d109" />
 <img width="664" height="337" alt="image" src="https://github.com/user-attachments/assets/77ffc9e5-b308-4111-bfd6-06333a60a946" />
 
-## 📁 Struktur Folder (Contoh)
+<img width="879" height="597" alt="image" src="https://github.com/user-attachments/assets/ae4e740c-44df-467f-9f1f-007244fe6bdd" />
+
 
